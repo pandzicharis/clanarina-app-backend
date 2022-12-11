@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: clanarina_db
+      POSTGRES_PASSWORD: root
+    ports:
+      - 8100:8100
+    volumes:
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    # show all queries
+    command: "-c log_statement=all"
